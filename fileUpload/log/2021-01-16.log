@@ -1,0 +1,4 @@
+20210116 14:17:40.974 [restartedMain] INFO c.e.u.FileUploadApplication -
+				Starting FileUploadApplication using Java 15 on LAPTOP-OGKDVBPP with PID 18048 (C:\Users\sjeon\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\fileUpload\bin\main started by sjeon in C:\Users\sjeon\Documents\workspace-spring-tool-suite-4-4.8.1.RELEASE\fileUpload) 
+20210116 14:17:40.979 [restartedMain] INFO c.e.u.FileUploadApplication -
+				No active profile set, falling back to default profiles: default 

@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>CodeDownload</title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"></link>
+  <a href="/download/sample">EXPORT</a>
+</head>
+<body>
+	 <table class="table table-striped">
+    <thead>
+    <tr>
+    <th scope="col">S-code</th>	
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="datas: ${datas}" >
+      <td scope="row" th:text="${datas}"></td>
+    </tr>
+    </tbody>
+     </table>
+</body>
+</html>
