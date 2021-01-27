@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>Upload Excel file (.xlsx)</h1>
+    <form method="post" enctype="multipart/form-data" th:action="@{/}">
+        <input type="file" name="file" />
+        <input type="submit" value="Upload" />
+    </form>
+
+    <h1>Employees</h1>
+    <table th:unless="${#lists.isEmpty(employees)}">
+        <tr>
+            <td>PNO</td>
+            <td>DME_PNO</td>
+            <td>MATNR</td>
+            <td>GMDL_PL_CD</td>
+            <td>GMDL_PL_NO</td>
+            <td>PRODUCT_NAME</td>
+            <td>SUB_PRODUCT_NAME</td>
+            <td>MODEL_NO</td>
+            <td>VENDER</td>
+            <td>ROUTE</td>
+            <td>REGION</td>
+            <td>PRODUCT_CATEGORY</td>
+            <td>MFG_NO</td>
+            <td>JAN_UPC_EAN</td>
+            <td>GLOBAL_SKU</td>
+            <td>CARTON_ON</td>
+            <td>FCS_DATE</td>
+            <td>REGIST_DAY</td>  
+        </tr>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.pno}"></td>
+            <td th:text="${employee.dme_Pno}"></td>
+            <td th:text="${employee.matnr}"></td>
+            <td th:text="${employee.gmdl_Pl_Cd}"></td>
+            <td th:text="${employee.gmdl_pl_no}"></td>
+            <td th:text="${employee.product_name}"></td>
+            <td th:text="${employee.sub_product_name}"></td>
+            <td th:text="${employee.model_no}"></td>
+            <td th:text="${employee.vender}"></td>
+            <td th:text="${employee.route}"></td>
+            <td th:text="${employee.region}"></td>
+            <td th:text="${employee.product_category}"></td>
+            <td th:text="${employee.mfg_no}"></td>
+            <td th:text="${employee.janUpcEan}"></td>
+            <td th:text="${employee.global_sku}"></td>
+            <td th:text="${employee.carton_on}"></td>
+            <td th:text="${employee.regist_day}"></td>
+        </tr>
+    </table>
+
+    <h1>Request parameters</h1>
+ 	<label for="matnr">First Name</label>
+    <input id="matnr" type="text" />
+  
+    <button id="refresh">Refresh</button>
+    <button id="download">Download</button> 
+    <script>
+
+        // using localStorage as quick and dirty method
+
+        document.getElementById('matnr').value = localStorage.getItem('matnr');
+     
+
+        function setLocalStorage() {
+            localStorage.setItem('matnr', document.getElementById('matnr').value);
+           
+        }
+
+        function getURL(path) {
+            let params = {
+                firstName: document.getElementById('matnr').value
+            };
+            let query = Object.keys(params)
+                .filter(k => params[k])
+                .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+                .join('&');
+            return query ? path + '?' + query : path;
+        }
+
+        document.getElementById('refresh').addEventListener('click', e => {
+            setLocalStorage();
+            window.location.href = getURL('/');
+        });
+
+        document.getElementById('download').addEventListener('click', e => {
+            setLocalStorage();
+            window.location.href = getURL('/download');
+        });
+
+    </script>
+
+</body>
+</html>
